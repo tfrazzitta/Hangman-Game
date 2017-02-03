@@ -1,0 +1,102 @@
+body{
+	
+}
+
+
+
+#game{
+	
+	width: 600px;
+	height: 400px;
+	border: 1px solid black;
+	float:left;
+	margin-left: 20%;
+	margin-top: 50px;
+	
+
+}
+
+
+#WordGuessed{
+	width: 200px;
+	height: 200px;
+	border: 1px solid black;
+	float:left;
+	margin-top: 50px;
+ 
+}
+
+
+
+#GuessesRemaining{
+	width: 200px;
+	height: 200px;
+	border: 1px solid black;
+	float:left;
+	clear:left;
+	height:198px;
+
+	
+
+
+}
+
+
+#money{
+
+text-align:center;
+font-size:70px;
+line-height: 200px;
+
+}
+
+
+#guess{
+	text-align: center;
+	font-weight: bold;
+	font-size: 24px;
+	line-height: 50px;
+
+}
+
+#WrongGuess{
+
+	text-align: center;
+	font-weight: bold;
+	font-size: 24px;
+	line-height: 50px;
+}
+
+
+#response{
+
+	text-align: center;
+	font-weight: bold;
+	font-size: 18px;
+
+
+}
+
+h1,h2,h3,h4{
+	text-align: center;
+}
+
+#dancing-baby{
+
+	float:left;
+	position:relative;
+	left:-15px;
+}
+
+#dancing-baby2{
+	margin-left: 450px;
+}
+
+
+#block{
+	float:left;
+	margin-left:auto;
+    margin-right:auto;
+    height:auto; 
+    width:auto;
+}

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Hangman Game</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+  </head>
+<body>
+<h1>Hangman</h1>
+
+
+
+<div id="game"> 
+<h2>Current Word</h2>
+      <div id ="money"></div>
+      <div id ="dancing-baby"></div>
+      <div id ="dancing-baby2"></div>
+       <div id ="win-lose-message"></div>
+
+</div>
+
+<div id="block">
+
+<div id="WordGuessed">        
+<h3>Current Word</h3>
+<div id="guess"> </div>
+<div id="response"></div>
+</div>
+
+
+<div id="GuessesRemaining">
+<h4>Guesses Remaining</h4>
+<div id="WrongGuess"></div>
+</div>
+
+</div>
+
+
+
+ </body>
+
+    <script>
+
+var wordArray = ["beatles","eagles","prince"];
+
+   var randomWord= wordArray[Math.floor(Math.random() * wordArray.length)];
+
+   var RANDOMword= Array.from(randomWord);
+
+   var dashesArray= [];
+
+   var GuessesRemaining = 6;
+
+   var keypress;
+
+   var b;
+
+  var zoo;
+
+
+
+
+function CreateDashes(){
+	
+
+for(i=0; i<randomWord.length;i++){
+dashesArray.push("_")
+
+var together= dashesArray.join('  ');
+var zoo = Array.from(together);
+document.getElementById("money").innerHTML=together; 
+
+};
+
+
+console.log(RANDOMword);
+console.log(together);
+console.log(zoo);
+console.log(RANDOMword[2]);
+zoo = RANDOMword;
+
+};  // end up making dashe-
+
+
+CreateDashes();
+
+
+
+document.onkeyup = function(event) {
+var keypress = event.key;
+RANDOMword.length = dashesArray.length;
+var together= dashesArray.join();
+var zoo = Array.from(together);
+
+
+
+if(RANDOMword.indexOf(keypress) !==-1){
+var b = RANDOMword.indexOf(keypress);
+document.getElementById("guess").innerHTML=keypress; 
+document.getElementById("response").innerHTML="Correct!"; 
+document.getElementById("dancing-baby").innerHTML= '<img src="http://computemidwest.com/news/content/images/2016/09/90s-gifs-dancing-baby.gif">';
+document.getElementById("dancing-baby2").innerHTML= '<img src="http://computemidwest.com/news/content/images/2016/09/90s-gifs-dancing-baby.gif">';  
+ 
+
+}
+ // this show the random word that was turned into an array takes in at a position b= keypress and what letter returns
+
+
+else {
+  var a = RANDOMword.indexOf(keypress);
+  GuessesRemaining = GuessesRemaining - 1;
+  document.getElementById("guess").innerHTML=keypress; 
+  document.getElementById("response").innerHTML= "Sorry, try again. You have " + GuessesRemaining + " guesses left";
+  document.getElementById("WrongGuess").innerHTML= GuessesRemaining;
+  document.getElementById("dancing-baby").innerHTML= ""
+   document.getElementById("dancing-baby2").innerHTML= ""
+}
+
+
+
+}; // end of oneky function
+
+
+function displayWord(){
+  
+    
+
+}
+
+  </script>
+    
+</html>

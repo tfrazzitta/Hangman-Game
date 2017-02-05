@@ -123,3 +123,17 @@ h1 img{
     height:auto; 
     width:auto;
 }
+
+#win-lose-message{
+	font-size:100px;
+	font-weight:bold;
+	text-align: center;
+	margin-top: -150px;
+	font-family: 'Pacifico', cursive;
+	color:red;
+	text-shadow:2px 2px yellow;
+
+	 -ms-transform: rotate(10deg); /* IE 9 */
+    -webkit-transform: rotate(10deg); /* Chrome, Safari, Opera */
+    transform: rotate(10deg);
+}

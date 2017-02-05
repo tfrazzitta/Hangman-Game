@@ -3,11 +3,11 @@
   <head>
     <meta charset="UTF-8">
     <title>Hangman Game</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
   </head>
 <body>
-<h1> <img src="http://www.mightycrusaders.net/images/hangman_title_lg.gif"></h1>
+<h1> <img src="assets/images/hangman_title_lg.gif"> </h1>
 
 
 
@@ -65,7 +65,7 @@ confirm("Are You Ready");
 function PlayAgain(){
   var x = confirm("Would you like to play Again?");
   if( x === true){
-    Restart();
+  Restart();
  }
 }
 
@@ -110,36 +110,39 @@ document.onkeyup = function(event) {  ///onkey function
     //debugger;
     var keypress = event.key;
     var matches =[];
-    for(var f = chosenWord.splice(0); f.length > 0;){
-      var index= f.indexOf(keypress);
-    
-      if(index !==-1){
-        matches.push(index);
-         f= f.splice(index+1);
-      }
-else{
-f = [];
-}
+    for (var i = 0; i < chosenWord.length; i++) {
+        chosenWord[i];
+        var found = false;
+        for(var j = 0; j < guessedLetters.length; j++){
+            if(guessedLetters[j] === chosenWord[i]){
+                found = true;
+            }
+        }
+        if(found === false){
+            
+        }else{
+            matches.push(i);
+        }
     }
 
       
 
 
-
     if(matches.length !== 0){
       for(var i=0; i<matches.length;i++){
         var indexInArray = matches[i];
-        dashesArray[indexInArray] = keypress;
+        dashesArray[indexInArray] = chosenWord[indexInArray];
       }
       document.getElementById("money").innerHTML = dashesArray.join("")
-      countMatches = countMatches+ matches.length;
+      //countMatches = countMatches+ matches.length;
 
 
-       if(countMatches === chosenWord.length){
+       if(matches.length === chosenWord.length){
           console.log("we got this... baby");
            document.getElementById("money").innerHTML = dashesArray.join(""); 
           setTimeout(PlayAgain, 1000);
           document.getElementById("win-lose-message").innerHTML="You Win"; 
+
         }
 
 
@@ -155,10 +158,10 @@ f = [];
 
 else {
 
-      GuessesRemaining--;
+       GuessesRemaining--;
             if(GuessesRemaining === 0){  //if guesses equal 0 you lose
             PlayAgain();
-           document.getElementById("win-lose-message").innerHTML="You Lose"; 
+            document.getElementById("win-lose-message").innerHTML="You Lose"; 
              }
 
       // this pushes the key you pressed to an array and displays that array, code a way to check for repeat letter clicks

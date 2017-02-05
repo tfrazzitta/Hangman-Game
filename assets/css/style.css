@@ -1,4 +1,5 @@
 body{
+
 	background:url("http://stock-wallpapers.com/wp-content/uploads/2014/05/Optimus-G2-Wallpaper-15.jpg");
 	background-repeat: no-repeat;
 	background-size:100%;
@@ -127,8 +128,7 @@ h1 img{
 #win-lose-message{
 	font-size:100px;
 	font-weight:bold;
-	text-align: center;
-	margin-top: -150px;
+	text-align: center;r
 	font-family: 'Pacifico', cursive;
 	color:red;
 	text-shadow:2px 2px yellow;

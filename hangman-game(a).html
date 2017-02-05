@@ -4,25 +4,24 @@
     <meta charset="UTF-8">
     <title>Hangman Game</title>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
   </head>
 <body>
 <h1> <img src="assets/images/hangman_title_lg.gif"> </h1>
 
 
 
-<div id="game"> 
+<div id="game">
 <h2>Current Word</h2>
       <div id ="money"></div>
       <div id ="dancing-baby"></div>
-      <div id ="dancing-baby2"></div>
-       <div id ="win-lose-message"></div>
+         <div id ="dancing-baby2"></div>
+          <div id ="win-lose-message"></div>
 
 </div>
 
 <div id="block">
 
-<div id="WordGuessed">        
+<div id="WordGuessed">
 <h3>Letters Guessed</h3>
 <div id="guess"> </div>
 <div id="response"></div>
@@ -61,11 +60,13 @@
 confirm("Are You Ready");
 
 
-
 function PlayAgain(){
+   document.getElementById("dancing-baby").innerHTML= " ";
+        document.getElementById("dancing-baby2").innerHTML= " ";
+  document.getElementById("win-lose-message").innerHTML=" ";
   var x = confirm("Would you like to play Again?");
   if( x === true){
-  Restart();
+    Restart();
  }
 }
 
@@ -81,24 +82,24 @@ function PlayAgain(){
 
 
 function CreateDashes(){
-  
+
   for(i=0; i<chosenWord.length;i++){
-    
+
     var b=  dashesArray.push(" _");
 
     console.log(dashesArray.join(""));
 
   };
 
-  document.getElementById("money").innerHTML = dashesArray.join(""); 
+  document.getElementById("money").innerHTML = dashesArray.join("");
  document.getElementById("WrongGuess").innerHTML= 6;
 
-};  
+};
 
 CreateDashes();
 
 
-console.log(chosenWord)
+
 
 console.log('The array length of choseWord is ' + chosenWord.length);
 console.log('The array length of dashesArray is ' + dashesArray.length);
@@ -110,64 +111,60 @@ document.onkeyup = function(event) {  ///onkey function
     //debugger;
     var keypress = event.key;
     var matches =[];
-    for (var i = 0; i < chosenWord.length; i++) {
-        chosenWord[i];
-        var found = false;
-        for(var j = 0; j < guessedLetters.length; j++){
-            if(guessedLetters[j] === chosenWord[i]){
-                found = true;
-            }
-        }
-        if(found === false){
-            
-        }else{
-            matches.push(i);
-        }
+    var previousIndex = 0;
+    for( var f = chosenWord; f.length > 0;){
+      var index= f.indexOf(keypress);
+
+
+      if(index !==-1){
+        matches.push(previousIndex + index);
+        f= f.slice(index+1);
+        previousIndex = previousIndex + index + 1;
+      }
+      else{
+      f = [];
+      }
     }
-
-      
-
 
     if(matches.length !== 0){
       for(var i=0; i<matches.length;i++){
         var indexInArray = matches[i];
-        dashesArray[indexInArray] = chosenWord[indexInArray];
+        dashesArray[indexInArray] = keypress;
       }
       document.getElementById("money").innerHTML = dashesArray.join("")
-      //countMatches = countMatches+ matches.length;
+      countMatches = countMatches+ matches.length;
 
 
-       if(matches.length === chosenWord.length){
+       if(countMatches === chosenWord.length){
           console.log("we got this... baby");
-           document.getElementById("money").innerHTML = dashesArray.join(""); 
+           document.getElementById("money").innerHTML = dashesArray.join("");
+           document.getElementById("win-lose-message").innerHTML="You Win";
           setTimeout(PlayAgain, 1000);
-          document.getElementById("win-lose-message").innerHTML="You Win"; 
-
+          
         }
-
-
+console.log(countMatches);
         guessedLetters.push(keypress);
 
-        document.getElementById("response").innerHTML="Correct!"; 
-        document.getElementById("dancing-baby").innerHTML= '<img src=""assets/images/200w.gif"">';
-        //document.getElementById("dancing-baby2").innerHTML= '<img src="http://computemidwest.com/news/content/images/2016/09/90s-gifs-dancing-baby.gif">';  
-        
+        document.getElementById("response").innerHTML="Correct!";
+        document.getElementById("dancing-baby").innerHTML= '<img src="http://computemidwest.com/news/content/images/2016/09/90s-gifs-dancing-baby.gif">';
+        document.getElementById("dancing-baby2").innerHTML= '<img src="http://computemidwest.com/news/content/images/2016/09/90s-gifs-dancing-baby.gif">';
+
     }
 
 
 
 else {
 
-       GuessesRemaining--;
+      GuessesRemaining--;
             if(GuessesRemaining === 0){  //if guesses equal 0 you lose
-            PlayAgain();
-            document.getElementById("win-lose-message").innerHTML="You Lose"; 
+          setTimeout(PlayAgain, 1000);
+            document.getElementById("win-lose-message").innerHTML="You Lose";
              }
 
       // this pushes the key you pressed to an array and displays that array, code a way to check for repeat letter clicks
       guessedLetters.push(keypress);
-      document.getElementById("guess").innerHTML= guessedLetters; 
-      document.getElementById("response").innerHTML=""; 
+      document.getElementById("guess").innerHTML= guessedLetters;
+      document.getElementById("response").innerHTML="";
       document.getElementById("WrongGuess").innerHTML= GuessesRemaining;
       document.getElementById("dancing-baby").innerHTML= ""
       document.getElementById("dancing-baby2").innerHTML= ""
@@ -177,11 +174,11 @@ else {
 
 
 //   if(chosenWord.indexOf(keypress) !== -1){
-        
+
 //         // this code identifies the index and uses the same index to replace _ with the letter and then display on screen
 //         var indexInArray = chosenWord.indexOf(keypress);
 //         dashesArray[indexInArray] = keypress;
-//         document.getElementById("money").innerHTML = dashesArray.join(""); 
+//         document.getElementById("money").innerHTML = dashesArray.join("");
 
 
 //         //r
@@ -189,51 +186,51 @@ else {
 
 //       console.log(typeof dashesArray + "," + dashesArray);
 //       console.log(typeof chosenWord + "," + chosenWord);
-      
+
 //       var countMatches = 0;
-     
+
 //        for(var i = 0; i < chosenWord.length; i++){
 //       if(chosenWord[i] === dashesArray[i]){
 //         countMatches++;
-       
+
 //       }
 //     }
 
 
 //     if(countMatches === chosenWord.length){
 //       console.log("we got this... baby");
-//        document.getElementById("money").innerHTML = dashesArray.join(""); 
+//        document.getElementById("money").innerHTML = dashesArray.join("");
 //       setTimeout(PlayAgain, 1000);
-//       document.getElementById("win-lose-message").innerHTML="You Win"; 
+//       document.getElementById("win-lose-message").innerHTML="You Win";
 //     }
 
 //     if(dashesArray === chosenWord){  //if player guesses the entire word
 //     PlayAgain();
-//     document.getElementById("win-lose-message").innerHTML="You Win"; 
-       
+//     document.getElementById("win-lose-message").innerHTML="You Win";
+
 
 
 //         // this pushes the key you pressed to an array and displays that array, code a way to check for repeat letter clicks
 //         guessedLetters.push(keypress);
-       
+
 // }
-//         document.getElementById("response").innerHTML="Correct!"; 
+//         document.getElementById("response").innerHTML="Correct!";
 //         document.getElementById("dancing-baby").innerHTML= '<img src="http://computemidwest.com/news/content/images/2016/09/90s-gifs-dancing-baby.gif">';
-//         document.getElementById("dancing-baby2").innerHTML= '<img src="http://computemidwest.com/news/content/images/2016/09/90s-gifs-dancing-baby.gif">';  
+//         document.getElementById("dancing-baby2").innerHTML= '<img src="http://computemidwest.com/news/content/images/2016/09/90s-gifs-dancing-baby.gif">';
 //         }
-   
+
 //      else {
 
 //       GuessesRemaining--;
 //             if(GuessesRemaining === 0){  //if guesses equal 0 you lose
 //             PlayAgain();
-//            document.getElementById("win-lose-message").innerHTML="You Lose"; 
+//            document.getElementById("win-lose-message").innerHTML="You Lose";
 //              }
 
 //       // this pushes the key you pressed to an array and displays that array, code a way to check for repeat letter clicks
 //       guessedLetters.push(keypress);
-//       document.getElementById("guess").innerHTML= guessedLetters; 
-//       document.getElementById("response").innerHTML=""; 
+//       document.getElementById("guess").innerHTML= guessedLetters;
+//       document.getElementById("response").innerHTML="";
 //       document.getElementById("WrongGuess").innerHTML= GuessesRemaining;
 //       document.getElementById("dancing-baby").innerHTML= ""
 //       document.getElementById("dancing-baby2").innerHTML= ""
@@ -245,7 +242,7 @@ else {
 
 
 
- 
+
 
 </script>
 
